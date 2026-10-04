@@ -3,7 +3,6 @@ import { Star } from 'lucide-react';
 import { PageHero } from '@/components/site/page-hero';
 import { GoogleRating } from '@/components/site/rating';
 import { ReviewWall } from '@/components/site/review-wall';
-import { SampleNote } from '@/components/site/sample-note';
 import { site } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -25,7 +24,6 @@ export default function ReviewsPage() {
         </div>
       </section>
       <div className="mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-20">
-        <SampleNote className="mb-10 max-w-xl">These reviews are samples. Replace them in lib/reviews.ts with real ones you have permission to show.</SampleNote>
         <ReviewWall />
       </div>
     </>

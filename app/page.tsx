@@ -9,7 +9,6 @@ import { GoogleRating } from '@/components/site/rating';
 import { ReviewMarquee } from '@/components/site/review-marquee';
 import { OpenBadge } from '@/components/site/open-badge';
 import { SmartImage } from '@/components/site/smart-image';
-import { SampleNote } from '@/components/site/sample-note';
 import { dishes, signatureIds } from '@/lib/menu';
 import { gallery } from '@/lib/gallery';
 import { site } from '@/lib/site';
@@ -60,7 +59,6 @@ export default function HomePage() {
             <DishCard key={d.id} dish={d} index={i} />
           ))}
         </div>
-        <SampleNote className="mt-8 max-w-xl">Dishes and prices are indicative placeholders. Edit them in lib/menu.ts.</SampleNote>
       </section>
 
       {/* HOW IT WORKS */}
@@ -113,9 +111,6 @@ export default function HomePage() {
         </div>
         <div className="mt-14">
           <ReviewMarquee />
-        </div>
-        <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <SampleNote className="mt-6 max-w-xl">The quotes above are samples. Replace them in lib/reviews.ts with real reviews.</SampleNote>
         </div>
       </section>
 

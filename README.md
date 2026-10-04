@@ -62,19 +62,16 @@ to the brand ink, white and turmeric.
 
 ## 6. Replace the placeholders
 
-With `NEXT_PUBLIC_SHOW_SAMPLE_BADGES=true` (default), dashed notes mark every placeholder on the page.
-
 | What | Where | Status |
 |---|---|---|
 | Name, address, map, hours, Google rating | `lib/site.ts` | From the public Google listing (rating as of Aug 2026) |
 | Menu items and prices | `lib/menu.ts` | **Placeholders** |
 | Reviews | `lib/reviews.ts` | **Samples** — use real ones you may show |
 | Photos | `lib/images.ts` | **Unsplash stock**: one verified photo per dish, credited on the Gallery page. Not the café's own food, so swap in real photos (`public/photos/`) when you have them |
-| Owner's note | `app/about/page.tsx` | **Placeholder** |
+| "Why we do it" note | `app/about/page.tsx` | Generic copy, swap in the owner's own words if you like |
 | Phone, Instagram, Facebook | `.env.local` | Hidden until set |
 
 If a remote photo ever fails to load, a coloured placeholder appears instead of a broken image.
-When everything is real, set `NEXT_PUBLIC_SHOW_SAMPLE_BADGES=false`.
 
 ## 7. Deploy
 

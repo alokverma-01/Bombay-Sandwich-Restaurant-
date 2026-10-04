@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { PageHero } from '@/components/site/page-hero';
 import { GalleryGrid } from '@/components/site/gallery-grid';
-import { SampleNote } from '@/components/site/sample-note';
 import { photoCredits } from '@/lib/images';
 
 export const metadata: Metadata = {
@@ -15,7 +14,6 @@ export default function GalleryPage() {
     <>
       <PageHero title="Gallery" intro="Tap any photo to open it. Swipe or use the arrow keys to move through them." color="var(--sky)" />
       <div className="mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-20">
-        <SampleNote className="mb-8 max-w-xl">These are stock photos, not the café. Add your own in /public/photos and update lib/images.ts.</SampleNote>
         <GalleryGrid />
         <p className="mt-12 max-w-3xl text-sm text-muted-foreground">
           Photos on this site from{' '}

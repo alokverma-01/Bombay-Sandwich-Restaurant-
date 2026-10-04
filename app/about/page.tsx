@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PageHero } from '@/components/site/page-hero';
 import { LayerExplainer } from '@/components/site/layer-explainer';
-import { SampleNote } from '@/components/site/sample-note';
 import { site } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -26,11 +25,10 @@ export default function AboutPage() {
 
       <section className="border-y-2 border-ink bg-band py-20 md:py-28" aria-labelledby="note">
         <div className="mx-auto max-w-3xl px-4 md:px-8">
-          <h2 id="note" className="font-display text-[clamp(2rem,4.5vw,3.2rem)] leading-[0.95] text-ink">A note from the owner</h2>
+          <h2 id="note" className="font-display text-[clamp(2rem,4.5vw,3.2rem)] leading-[0.95] text-ink">Why we do it</h2>
           <p className="mt-6 text-xl leading-relaxed text-ink">
-            [Write two or three sentences here about how the café started, who runs it, and what you want every guest to leave with.]
+            We wanted Lucknow to taste the sandwich Mumbai grows up on: made fresh to order, packed with green chutney and crunchy vegetables, and priced for every day. Every sandwich is built by hand the moment you order it, so you walk away with something hot, fresh and full of flavour.
           </p>
-          <SampleNote className="mt-6">This paragraph is a placeholder for the owner&rsquo;s own words. Edit it in app/about/page.tsx.</SampleNote>
         </div>
       </section>
 

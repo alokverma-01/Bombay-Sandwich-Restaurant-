@@ -1,6 +1,5 @@
 import { Quote, Star } from 'lucide-react';
 import type { Review } from '@/lib/reviews';
-import { site } from '@/lib/site';
 
 const palette = [
   { bg: 'var(--turmeric)', fg: 'var(--ink)' },
@@ -25,7 +24,6 @@ export function ReviewCard({ review, index }: { review: Review; index: number })
       <figcaption className="mt-4 flex items-center gap-2 text-sm font-bold">
         <span className="grid size-8 place-items-center rounded-full border-2 border-current font-display text-xs">{review.name[0]}</span>
         {review.name}
-        {site.showSampleBadges && <span className="rounded-full border border-current px-2 py-0.5 text-[11px] font-semibold opacity-80">Sample</span>}
       </figcaption>
     </figure>
   );

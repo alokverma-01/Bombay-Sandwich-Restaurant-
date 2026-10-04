@@ -39,7 +39,6 @@ export const site = {
   instagram: clean(process.env.NEXT_PUBLIC_INSTAGRAM_URL),
   facebook: clean(process.env.NEXT_PUBLIC_FACEBOOK_URL),
   url: clean(process.env.NEXT_PUBLIC_SITE_URL) || 'http://localhost:3000',
-  showSampleBadges: process.env.NEXT_PUBLIC_SHOW_SAMPLE_BADGES !== 'false',
 };
 
 export const fullAddress = `${site.address.line1}, ${site.address.line2}, ${site.address.city}, ${site.address.state} ${site.address.postalCode}`;
