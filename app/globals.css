@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+/* Dark mode only via a .dark class. The brand is bright, so we never add it. */
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Brand: Mumbai street colours */
+  --turmeric: #ffc21a; /* kaali-peeli taxi yellow */
+  --chutney: #19b35c;  /* green chutney */
+  --beet: #d9105f;     /* beetroot */
+  --tomato: #ff5b23;   /* tomato */
+  --sky: #2ec4f1;      /* Arabian Sea */
+  --ink: #1d1446;      /* deep indigo ink */
+  --bread: #fff2d2;
+  --band: #ffe592;     /* deeper yellow for alternating bands */
+
+  /* shadcn tokens (used by the CircleMenu and fluid menu) */
+  --background: #fff4c4; /* sunny page yellow */
+  --foreground: var(--ink);
+  --muted: var(--turmeric);
+  --muted-foreground: #4a4270;
+  --border: var(--ink);
+  --ring: var(--sky);
+  --radius: 1.25rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-turmeric: var(--turmeric);
+  --color-chutney: var(--chutney);
+  --color-beet: var(--beet);
+  --color-tomato: var(--tomato);
+  --color-sky: var(--sky);
+  --color-ink: var(--ink);
+  --color-bread: var(--bread);
+  --color-band: var(--band);
+  --color-wa: #25d366;
+  --font-display: var(--font-bungee), "Arial Black", Impact, sans-serif;
+  --font-sans: var(--font-gabarito), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+  body { background: var(--background); color: var(--foreground); }
+  ::selection { background: var(--beet); color: #fff; }
+  :focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; border-radius: 6px; }
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+}
+
+@layer components {
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+    border: 2px solid var(--ink); border-radius: 999px;
+    padding: .85rem 1.35rem; font-weight: 800; font-size: 1rem; line-height: 1;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform .15s ease, box-shadow .15s ease;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+  .btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+  .btn:disabled, .btn[aria-disabled="true"] { opacity: .5; cursor: not-allowed; transform: none; box-shadow: 2px 2px 0 var(--ink); }
+  .btn-wa { background: #25d366; color: var(--ink); }
+  .btn-ink { background: var(--ink); color: #fff; }
+  .btn-white { background: #fff; color: var(--ink); }
+  .btn-beet { background: var(--beet); color: #fff; }
+  .btn-turmeric { background: var(--turmeric); color: var(--ink); }
+  .btn-order {
+    position: relative; isolation: isolate; color: var(--ink);
+    background: linear-gradient(120deg, #ff8a00 0%, #ff3d7f 55%, #ff2e88 100%); background-size: 200% 100%;
+    animation: order-glow 4s ease-in-out infinite;
+  }
+  .btn-order .shine { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; z-index: -1; pointer-events: none; }
+  .btn-order .shine::before {
+    content: ""; position: absolute; inset: 0; transform: translateX(-120%);
+    background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.75) 50%, transparent 65%);
+    animation: shine 3.2s ease-in-out 1.5s infinite;
+  }
+
+  .sticker { border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+
+  .field {
+    width: 100%; border: 2px solid var(--ink); border-radius: 1rem; background: #fff;
+    padding: .8rem 1rem; font-size: 1rem; transition: box-shadow .15s ease;
+  }
+  .field:focus { outline: none; box-shadow: 4px 4px 0 var(--sky); }
+  .field[aria-invalid="true"] { border-color: var(--beet); box-shadow: 4px 4px 0 var(--beet); }
+}
+
+/* Taxi stripe and grill marks */
+.taxi-stripe { background: repeating-linear-gradient(135deg, var(--ink) 0 14px, var(--turmeric) 14px 28px); }
+.grill {
+  background: repeating-linear-gradient(115deg, transparent 0 22px, rgba(70, 35, 10, .55) 22px 29px);
+  mix-blend-mode: multiply;
+}
+.dots { background-image: radial-gradient(rgba(29, 20, 70, .18) 1.3px, transparent 1.5px); background-size: 18px 18px; }
+
+/* Marquee */
+.marquee-track { animation: marquee var(--dur, 32s) linear infinite; }
+.marquee-reverse { animation-direction: reverse; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes order-glow { 50% { background-position: 100% 0; } }
+@keyframes shine { 0%, 60% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+
+/* Mobile circle nav: dim the page while the ring is open */
+#nav-scrim { position: fixed; inset: 0; z-index: 45; background: rgba(29, 20, 70, .55); opacity: 0; pointer-events: none; transition: opacity .3s; }
+body:has(#nav-circle [aria-expanded="true"]) #nav-scrim { opacity: 1; }
+
+.ping-slow { animation: ping-slow 2.4s cubic-bezier(0, 0, .2, 1) infinite; }
+@keyframes ping-slow { 75%, 100% { transform: scale(1.7); opacity: 0; } }
+
+.spin-slow { animation: spin 18s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Page change curtain (CSS so the page still shows if JavaScript fails) */
+.page-curtain {
+  position: fixed; inset: 0; z-index: 90; pointer-events: none; transform-origin: top;
+  animation: curtain-up .75s cubic-bezier(.76, 0, .24, 1) both;
+}
+.page-curtain.second { animation-delay: .08s; }
+@keyframes curtain-up { from { transform: scaleY(1); } to { transform: scaleY(0); } }
+
+/* Custom cursor: only hide the system cursor when ours is running */
+@media (pointer: fine) {
+  html.has-custom-cursor, html.has-custom-cursor * { cursor: none !important; }
+  html.has-custom-cursor input, html.has-custom-cursor textarea { cursor: text !important; }
+}
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee-track, .ping-slow, .spin-slow, .btn-order, .btn-order .shine::before { animation: none !important; }
+  .page-curtain { display: none; }
+}
+
+@media print {
+  .no-print { display: none !important; }
+}
